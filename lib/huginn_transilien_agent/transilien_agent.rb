@@ -288,20 +288,22 @@ module Agents
 
     def search_station(base_url,city)
 
+      log "test"
+
       uri = URI.parse("#{base_url}stopareas/#{city}")
       request = Net::HTTP::Get.new(uri)
-      request["Authority"] = "www.transilien.com"
+      request["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0"
       request["Accept"] = "application/json, text/plain, */*"
-#      request["Accept-Language"] = "fr;q=0.8"
-#      request["Cache-Control"] = "no-cache"
-#      request["Cookie"] = "TRI_city=AWS_PRD; SESS9fd2b737ae15de5f793cb3aba4d3583e=deleted; TRIPRD10CMS=tridenp101tricms; SESSd112ff168ce48c732b4e1e9108027db2=9iteaDl_or-fI_WIvzmMP2accRUgFJd8Ct_gwEcRmwk"
-#      request["Pragma"] = "no-cache"
-#      request["Referer"] = "https://www.transilien.com/fr/horaires/prochains-departs/?departure=Herblay&uicDeparture=8738188&prm=false&arrival=Paris+Saint-Lazare&uicArrival=8738400"
-#      request["Sec-Fetch-Dest"] = "empty"
-#      request["Sec-Fetch-Mode"] = "cors"
-#      request["Sec-Fetch-Site"] = "same-origin"
-#      request["Sec-Gpc"] = "1"
-      request["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+      request["Accept-Language"] = "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+      request["Connection"] = "keep-alive"
+      request["Referer"] = "https://www.transilien.com/fr/page-lignes/ligne-j"
+      request["Sec-Fetch-Dest"] = "empty"
+      request["Sec-Fetch-Mode"] = "cors"
+      request["Sec-Fetch-Site"] = "same-origin"
+      request["Dnt"] = "1"
+      request["Pragma"] = "no-cache"
+      request["Cache-Control"] = "no-cache"
+      request["Te"] = "trailers"
       
       req_options = {
         use_ssl: uri.scheme == "https",
@@ -387,7 +389,7 @@ module Agents
 #      request["Sec-Fetch-Mode"] = "cors"
 #      request["Sec-Fetch-Site"] = "same-origin"
 #      request["Sec-Gpc"] = "1"
-      request["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+      request["User-Agent"] = "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0"
 #      request["Te"] = "trailers"
       request.body = data.to_json
 #      request.body = JSON.dump({
